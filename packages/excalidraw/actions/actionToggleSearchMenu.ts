@@ -11,11 +11,6 @@ export const actionToggleSearchMenu = register({
   keywords: ["search", "find"],
   label: "search.title",
   viewMode: true,
-  trackEvent: {
-    category: "search_menu",
-    action: "toggle",
-    predicate: (appState) => appState.gridModeEnabled,
-  },
   perform(elements, appState, _, app) {
     if (
       appState.openSidebar?.name === DEFAULT_SIDEBAR.name &&

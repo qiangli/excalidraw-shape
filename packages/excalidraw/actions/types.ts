@@ -181,26 +181,6 @@ export interface Action {
     app: AppClassProperties,
   ) => boolean;
   checked?: (appState: Readonly<AppState>) => boolean;
-  trackEvent:
-    | false
-    | {
-        category:
-          | "toolbar"
-          | "element"
-          | "canvas"
-          | "export"
-          | "history"
-          | "menu"
-          | "collab"
-          | "hyperlink"
-          | "search_menu";
-        action?: string;
-        predicate?: (
-          appState: Readonly<AppState>,
-          elements: readonly ExcalidrawElement[],
-          value: any,
-        ) => boolean;
-      };
   /** if set to `true`, allow action to be performed in viewMode.
    *  Defaults to `false` */
   viewMode?: boolean;

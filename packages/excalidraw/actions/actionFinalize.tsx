@@ -21,7 +21,6 @@ import { isPathALoop } from "../shapes";
 export const actionFinalize = register({
   name: "finalize",
   label: "",
-  trackEvent: false,
   perform: (elements, appState, _, app) => {
     const { interactiveCanvas, focusContainer, scene } = app;
 

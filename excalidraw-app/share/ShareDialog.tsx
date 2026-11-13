@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { copyTextToSystemClipboard } from "@excalidraw/excalidraw/clipboard";
-import { trackEvent } from "@excalidraw/excalidraw/analytics";
-import { getFrame } from "@excalidraw/excalidraw/utils";
 import { useI18n } from "@excalidraw/excalidraw/i18n";
 import { KEYS } from "@excalidraw/excalidraw/keys";
 import { Dialog } from "@excalidraw/excalidraw/components/Dialog";
@@ -163,7 +161,6 @@ const ActiveRoomDialog = ({
           label={t("roomDialog.button_stopSession")}
           icon={playerStopFilledIcon}
           onClick={() => {
-            trackEvent("share", "room closed");
             collabAPI.stopCollaboration();
             if (!collabAPI.isCollaborating()) {
               handleClose();
@@ -197,7 +194,6 @@ const ShareDialogPicker = (props: ShareDialogProps) => {
           label={t("roomDialog.button_startSession")}
           icon={playerPlayIcon}
           onClick={() => {
-            trackEvent("share", "room creation", `ui (${getFrame()})`);
             collabAPI.startCollaboration(null);
           }}
         />

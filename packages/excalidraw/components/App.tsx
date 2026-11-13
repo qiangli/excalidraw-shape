@@ -41,7 +41,6 @@ import { createRedoAction, createUndoAction } from "../actions/actionHistory";
 import { ActionManager } from "../actions/manager";
 import { actions } from "../actions/register";
 import type { Action, ActionResult } from "../actions/types";
-import { trackEvent } from "../analytics";
 import {
   getDefaultAppState,
   isEraserActive,
@@ -1843,7 +1842,6 @@ class App extends React.Component<AppProps, AppState> {
     elements: ExportedElements,
     opts: { exportingFrame: ExcalidrawFrameLikeElement | null },
   ) => {
-    trackEvent("export", type, "ui");
     const fileHandle = await exportCanvas(
       type,
       elements,
@@ -1935,7 +1933,6 @@ class App extends React.Component<AppProps, AppState> {
     if (!magicFrameChildren.length) {
       if (source === "button") {
         this.setState({ errorMessage: "Cannot generate from an empty frame" });
-        trackEvent("ai", "generate (no-children)", "d2c");
       } else {
         this.setActiveTool({ type: "magicframe" });
       }
@@ -1962,14 +1959,11 @@ class App extends React.Component<AppProps, AppState> {
       selectedElementIds: { [frameElement.id]: true },
     });
 
-    trackEvent("ai", "generate (start)", "d2c");
     try {
       const { html } = await generateDiagramToCode({
         frame: magicFrame,
         children: magicFrameChildren,
       });
-
-      trackEvent("ai", "generate (success)", "d2c");
 
       if (!html.trim()) {
         this.updateMagicGeneration({
@@ -1996,7 +1990,6 @@ class App extends React.Component<AppProps, AppState> {
         data: { status: "done", html: parsedHtml },
       });
     } catch (error: any) {
-      trackEvent("ai", "generate (failed)", "d2c");
       this.updateMagicGeneration({
         frameElement,
         data: {
@@ -2026,7 +2019,6 @@ class App extends React.Component<AppProps, AppState> {
 
     if (selectedElements.length === 0) {
       this.setActiveTool({ type: TOOL_TYPE.magicframe });
-      trackEvent("ai", "tool-select (empty-selection)", "d2c");
     } else {
       const selectedMagicFrame: ExcalidrawMagicFrameElement | false =
         selectedElements.length === 1 &&
@@ -2043,8 +2035,6 @@ class App extends React.Component<AppProps, AppState> {
         this.setActiveTool({ type: TOOL_TYPE.magicframe });
         return;
       }
-
-      trackEvent("ai", "tool-select (existing selection)", "d2c");
 
       let frame: ExcalidrawMagicFrameElement;
       if (selectedMagicFrame) {
@@ -3563,13 +3553,6 @@ class App extends React.Component<AppProps, AppState> {
   };
 
   toggleLock = (source: "keyboard" | "ui" = "ui") => {
-    if (!this.state.activeTool.locked) {
-      trackEvent(
-        "toolbar",
-        "toggleLock",
-        `${source} (${this.device.editor.isMobile ? "mobile" : "desktop"})`,
-      );
-    }
     this.setState((prevState) => {
       return {
         activeTool: {
@@ -4447,15 +4430,6 @@ class App extends React.Component<AppProps, AppState> {
       ) {
         const shape = findShapeByKey(event.key);
         if (shape) {
-          if (this.state.activeTool.type !== shape) {
-            trackEvent(
-              "toolbar",
-              shape,
-              `keyboard (${
-                this.device.editor.isMobile ? "mobile" : "desktop"
-              })`,
-            );
-          }
           if (shape === "arrow" && this.state.activeTool.type === "arrow") {
             this.setState((prevState) => ({
               currentItemArrowType:
@@ -10446,8 +10420,6 @@ class App extends React.Component<AppProps, AppState> {
       container.getBoundingClientRect();
     const left = event.clientX - offsetLeft;
     const top = event.clientY - offsetTop;
-
-    trackEvent("contextMenu", "openContextMenu", type);
 
     this.setState(
       {

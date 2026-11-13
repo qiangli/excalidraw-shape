@@ -9,7 +9,6 @@ import { CaptureUpdateAction } from "../store";
 export const actionToggleCanvasMenu = register({
   name: "toggleCanvasMenu",
   label: "buttons.menu",
-  trackEvent: { category: "menu" },
   perform: (_, appState) => ({
     appState: {
       ...appState,
@@ -31,7 +30,6 @@ export const actionToggleCanvasMenu = register({
 export const actionToggleEditMenu = register({
   name: "toggleEditMenu",
   label: "buttons.edit",
-  trackEvent: { category: "menu" },
   perform: (_elements, appState) => ({
     appState: {
       ...appState,
@@ -59,7 +57,6 @@ export const actionShortcuts = register({
   label: "welcomeScreen.defaults.helpHint",
   icon: HelpIconThin,
   viewMode: true,
-  trackEvent: { category: "menu", action: "toggleHelpDialog" },
   perform: (_elements, appState, _, { focusContainer }) => {
     if (appState.openDialog?.name === "help") {
       focusContainer();

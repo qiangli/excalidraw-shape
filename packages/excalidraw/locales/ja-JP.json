@@ -295,7 +295,6 @@
     "headingMain": "エラーが発生しました。もう一度やり直してください。 <button>ページを再読み込みする。</button>",
     "clearCanvasMessage": "再読み込みがうまくいかない場合は、 <button>キャンバスを消去しています</button>",
     "clearCanvasCaveat": " これにより作業が失われます ",
-    "trackedToSentry": "識別子のエラー {{eventId}} が我々のシステムで追跡されました。",
     "openIssueMessage": "エラーに関するシーン情報を含めないように非常に慎重に設定しました。もしあなたのシーンがプライベートでない場合は、私たちのフォローアップを検討してください。 <button>バグ報告</button> GitHub のIssueに以下の情報をコピーして貼り付けてください。",
     "sceneContent": "シーンの内容:"
   },

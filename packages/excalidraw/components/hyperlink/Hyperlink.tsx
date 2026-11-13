@@ -30,7 +30,6 @@ import { getTooltipDiv, updateTooltipPosition } from "../../components/Tooltip";
 import { getSelectedElements } from "../../scene";
 import { hitElementBoundingBox } from "../../element/collision";
 import { isLocalLink, normalizeLink } from "../../data/url";
-import { trackEvent } from "../../analytics";
 import { useAppProps, useDevice, useExcalidrawAppState } from "../App";
 import { isEmbeddableElement } from "../../element/typeChecks";
 import { getLinkHandleFromCoords } from "./helpers";
@@ -88,10 +87,6 @@ export const Hyperlink = ({
     }
 
     const link = normalizeLink(inputRef.current.value) || null;
-
-    if (!element.link && link) {
-      trackEvent("hyperlink", "create");
-    }
 
     if (isEmbeddableElement(element)) {
       if (appState.activeEmbeddable?.element === element) {
@@ -212,13 +207,11 @@ export const Hyperlink = ({
   }, [appState, element, isEditing, setAppState, elementsMap]);
 
   const handleRemove = useCallback(() => {
-    trackEvent("hyperlink", "delete");
     mutateElement(element, { link: null });
     setAppState({ showHyperlinkPopup: false });
   }, [setAppState, element]);
 
   const onEdit = () => {
-    trackEvent("hyperlink", "edit", "popup-ui");
     setAppState({ showHyperlinkPopup: "editor" });
   };
   const { x, y } = getCoordsForPopover(element, appState, elementsMap);
@@ -421,7 +414,6 @@ const renderTooltip = (
     },
     "top",
   );
-  trackEvent("hyperlink", "tooltip", "link-icon");
 
   IS_HYPERLINK_TOOLTIP_VISIBLE = true;
 };

@@ -21,7 +21,6 @@ import type {
   AppClassProperties,
 } from "../types";
 import LibraryMenuItems from "./LibraryMenuItems";
-import { trackEvent } from "../analytics";
 import { atom, useAtom } from "../editor-jotai";
 import Spinner from "./Spinner";
 import {
@@ -80,7 +79,6 @@ const LibraryMenuContent = memo(
           processedElements: LibraryItem["elements"],
           libraryItems: LibraryItems,
         ) => {
-          trackEvent("element", "addToLibrary", "ui");
           for (const type of LIBRARY_DISABLED_TYPES) {
             if (processedElements.some((element) => element.type === type)) {
               return setAppState({

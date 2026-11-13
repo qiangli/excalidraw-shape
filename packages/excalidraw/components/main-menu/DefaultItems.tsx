@@ -40,7 +40,6 @@ import Trans from "../Trans";
 import DropdownMenuItemContentRadio from "../dropdownMenu/DropdownMenuItemContentRadio";
 import { THEME } from "../../constants";
 import type { Theme } from "../../element/types";
-import { trackEvent } from "../../analytics";
 import "./DefaultItems.scss";
 
 export const LoadScene = () => {
@@ -132,7 +131,6 @@ export const CommandPalette = (opts?: { className?: string }) => {
       icon={boltIcon}
       data-testid="command-palette-button"
       onSelect={() => {
-        trackEvent("command_palette", "open", "menu");
         setAppState({ openDialog: { name: "commandPalette" } });
       }}
       shortcut={getShortcutFromShortcutName("commandPalette")}

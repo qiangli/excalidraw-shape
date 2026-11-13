@@ -319,7 +319,6 @@ export const createPlaceholderEmbeddableLabel = (
 
 export const actionSetEmbeddableAsActiveTool = register({
   name: "setEmbeddableAsActiveTool",
-  trackEvent: { category: "toolbar" },
   target: "Tool",
   label: "toolBar.embeddable",
   perform: (elements, appState, _, app) => {

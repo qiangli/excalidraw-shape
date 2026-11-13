@@ -295,7 +295,6 @@
     "headingMain": "Der opstod en fejl. Prøv <button>at genindlæse siden</button>.",
     "clearCanvasMessage": "",
     "clearCanvasCaveat": "",
-    "trackedToSentry": "",
     "openIssueMessage": "<button></button> Kopiere og indsæt venligst oplysningerne nedenfor i et GitHub problem.",
     "sceneContent": "Scene indhold:"
   },

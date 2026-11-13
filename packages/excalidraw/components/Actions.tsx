@@ -22,7 +22,6 @@ import { capitalizeString, isTransparent } from "../utils";
 import Stack from "./Stack";
 import { ToolButton } from "./ToolButton";
 import { hasStrokeColor, toolIsArrow } from "../scene/comparisons";
-import { trackEvent } from "../analytics";
 import {
   hasBoundTextElement,
   isElbowArrow,
@@ -321,9 +320,6 @@ export const ShapesSwitcher = ({
               }
             }}
             onChange={({ pointerType }) => {
-              if (appState.activeTool.type !== value) {
-                trackEvent("toolbar", value, "ui");
-              }
               if (value === "image") {
                 app.setActiveTool({
                   type: value,

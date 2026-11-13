@@ -21,9 +21,6 @@ export const actionToggleLinearEditor = register({
       : "labels.lineEditor.edit";
   },
   keywords: ["line"],
-  trackEvent: {
-    category: "element",
-  },
   predicate: (elements, appState, _, app) => {
     const selectedElements = app.scene.getSelectedElements(appState);
     if (

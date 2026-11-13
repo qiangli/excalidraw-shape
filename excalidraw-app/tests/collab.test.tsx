@@ -22,25 +22,25 @@ Object.defineProperty(window, "crypto", {
   },
 });
 
-vi.mock("../../excalidraw-app/data/firebase.ts", () => {
-  const loadFromFirebase = async () => null;
-  const saveToFirebase = () => {};
-  const isSavedToFirebase = () => true;
-  const loadFilesFromFirebase = async () => ({
+vi.mock("../../excalidraw-app/data/localStore.ts", () => {
+  const loadFromLocalStore = async () => null;
+  const saveToLocalStore = () => {};
+  const isSavedToLocalStore = () => true;
+  const loadFilesFromLocalStore = async () => ({
     loadedFiles: [],
     erroredFiles: [],
   });
-  const saveFilesToFirebase = async () => ({
+  const saveFilesToLocalStore = async () => ({
     savedFiles: new Map(),
     erroredFiles: new Map(),
   });
 
   return {
-    loadFromFirebase,
-    saveToFirebase,
-    isSavedToFirebase,
-    loadFilesFromFirebase,
-    saveFilesToFirebase,
+    loadFromLocalStore,
+    saveToLocalStore,
+    isSavedToLocalStore,
+    loadFilesFromLocalStore,
+    saveFilesToLocalStore,
   };
 });
 

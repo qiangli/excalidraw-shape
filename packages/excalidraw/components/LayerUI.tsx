@@ -32,7 +32,6 @@ import Stack from "./Stack";
 import { UserList } from "./UserList";
 import { JSONExportDialog } from "./JSONExportDialog";
 import { PenModeButton } from "./PenModeButton";
-import { trackEvent } from "../analytics";
 import { useDevice } from "./App";
 import Footer from "./footer/Footer";
 import { isSidebarDockedAtom } from "./Sidebar/Sidebar";
@@ -362,18 +361,7 @@ const LayerUI = ({
   };
 
   const renderSidebars = () => {
-    return (
-      <DefaultSidebar
-        __fallback
-        onDock={(docked) => {
-          trackEvent(
-            "sidebar",
-            `toggleDock (${docked ? "dock" : "undock"})`,
-            `(${device.editor.isMobile ? "mobile" : "desktop"})`,
-          );
-        }}
-      />
-    );
+    return <DefaultSidebar __fallback />;
   };
 
   const isSidebarDocked = useAtomValue(isSidebarDockedAtom);
@@ -392,15 +380,6 @@ const LayerUI = ({
         __fallback
         icon={LibraryIcon}
         title={capitalizeString(t("toolBar.library"))}
-        onToggle={(open) => {
-          if (open) {
-            trackEvent(
-              "sidebar",
-              `${DEFAULT_SIDEBAR.name} (open)`,
-              `button (${device.editor.isMobile ? "mobile" : "desktop"})`,
-            );
-          }
-        }}
         tab={DEFAULT_SIDEBAR.defaultTab}
       >
         {t("toolBar.library")}

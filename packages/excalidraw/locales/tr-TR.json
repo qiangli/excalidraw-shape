@@ -295,7 +295,6 @@
     "headingMain": "Hata oluştu. Lütfen <button>sayfayı yenilemeyi deneyin.</button>",
     "clearCanvasMessage": "Yenileme sonrası sorun devam ediyorsa, lütfen <button>çizim alanını temizlemeyi deneyin.</button>",
     "clearCanvasCaveat": " Bu, yaptığınız değişiklikleri sıfırlayacak ",
-    "trackedToSentry": "Tanımlayıcı ile ilgili hata {{eventId}} sistemimize yakalandı.",
     "openIssueMessage": "Sahne bilginizi hata mesajına yansıtmamak için oldukça dikkatli davrandık. Eğer sahneniz gizli değilse hatayı lütfen şuradan takip edin <button>hata takibi.</button> Lütfen aşağıya GitHub sorununa kopyalayarak ve yapıştırarak bilgi ekleyin.",
     "sceneContent": "Sahne içeriği:"
   },

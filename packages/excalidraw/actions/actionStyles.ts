@@ -33,7 +33,6 @@ export const actionCopyStyles = register({
   name: "copyStyles",
   label: "labels.copyStyles",
   icon: paintIcon,
-  trackEvent: { category: "element" },
   perform: (elements, appState, formData, app) => {
     const elementsCopied = [];
     const element = elements.find((el) => appState.selectedElementIds[el.id]);
@@ -64,7 +63,6 @@ export const actionPasteStyles = register({
   name: "pasteStyles",
   label: "labels.pasteStyles",
   icon: paintIcon,
-  trackEvent: { category: "element" },
   perform: (elements, appState, formData, app) => {
     const elementsCopied = JSON.parse(copiedStyles);
     const pastedElement = elementsCopied[0];

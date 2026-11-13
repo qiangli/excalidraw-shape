@@ -7,7 +7,6 @@ import { CaptureUpdateAction } from "../store";
 
 export const actionAddToLibrary = register({
   name: "addToLibrary",
-  trackEvent: { category: "element" },
   perform: (elements, appState, _, app) => {
     const selectedElements = app.scene.getSelectedElements({
       selectedElementIds: appState.selectedElementIds,

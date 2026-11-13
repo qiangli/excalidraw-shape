@@ -51,7 +51,6 @@ import {
 import { activeConfirmDialogAtom } from "../ActiveConfirmDialog";
 import type { CommandPaletteItem } from "./types";
 import * as defaultItems from "./defaultCommandPaletteItems";
-import { trackEvent } from "../../analytics";
 import { useStable } from "../../hooks/useStable";
 
 import "./CommandPalette.scss";
@@ -143,10 +142,6 @@ export const CommandPalette = Object.assign(
               appState.openDialog?.name === "commandPalette"
                 ? null
                 : ({ name: "commandPalette" } as const);
-
-            if (nextState) {
-              trackEvent("command_palette", "open", "shortcut");
-            }
 
             return {
               openDialog: nextState,
